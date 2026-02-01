@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export async function adminLogin(prevState: any, formData: FormData) {
   const pin = formData.get("pin");
 
-  if (pin === "admin123") {
+  if (pin === "admin654") {
     // Set cookie
     (await cookies()).set("admin_session", "true", {
       httpOnly: true,
