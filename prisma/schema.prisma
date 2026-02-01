@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Nominee {
+  id        String   @id @default(uuid())
+  uniqueId  String   @unique // Auto-generated human-readable ID (e.g., AW-2024-001)
+  name      String
+  regNo     String   @unique
+  email     String   @unique
+  mobile    String
+  year      String
+  section   String
+  createdAt DateTime @default(now())
+  
+  nominations Nomination[]
+}
+
+model Award {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  criteria    String? // Stored as a JSON string or plain text list
+  
+  nominations Nomination[]
+}
+
+model Nomination {
+  id        String   @id @default(uuid())
+  nominee   Nominee @relation(fields: [nomineeId], references: [id])
+  nomineeId String
+  award     Award   @relation(fields: [awardId], references: [id])
+  awardId   String
+
+  @@unique([nomineeId, awardId])
+}
