@@ -69,8 +69,11 @@ export async function submitNomination(prevState: State, formData: FormData): Pr
        return { success: false, message: "One or more selected awards are invalid." };
     }
 
+    const yearMap: { [key: string]: string } = { "I": "1", "II": "2", "III": "3", "IV": "4" };
+    const numericYear = yearMap[validatedFields.data.year] || "0";
+
     // Generate Unique ID
-    const uniqueId = `AW-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const uniqueId = `${numericYear}${validatedFields.data.section}${validatedFields.data.regNo.slice(-3)}`;
 
     // Create Entry
     await prisma.nominee.create({

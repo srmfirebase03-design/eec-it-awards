@@ -5,12 +5,12 @@ const awards = [
   {
     title: "Best Academic Performer Award",
     description: "For students with excellent academic performance.",
-    criteria: "1. Students with excellent academic performance\n2. First-attempt pass in all subjects\n3. Satisfactory attendance\n4. Good disciplinary record are eligible."
+    criteria: "1. Students with excellent academic performance\n2. First-attempt pass in all subjects\n3. Good attendance\n4. Good disciplinary record are eligible."
   },
   {
     title: "Best Coder Award",
     description: "For students with strong coding and problem-solving skills.",
-    criteria: "1. College students with strong coding and problem-solving skills.\n2. Regular practice on coding platforms (e.g., LeetCode, HackerRank, CodeChef)\n3. Winners or prize holders in outside coding contests/hackathons\n4. Completed coding projects or technical applications\n5. Good academic standing and disciplinary record"
+    criteria: "1. College students with strong coding and problem-solving skills.\n2. Regular practice on coding platforms (e.g., LeetCode, HackerRank, CodeChef etc)\n3. Winners or prize holders in outside coding contests/hackathons\n4. Completed coding projects or technical applications\n5. Good academic standing and disciplinary record"
   },
   {
     title: "Best Researcher Award",
@@ -75,7 +75,7 @@ const awards = [
   {
     title: "Best Social Impact through Technology Award",
     description: "For students creating social impact through technology.",
-    criteria: "1. Conducted workshops or sessions to educate school students on technology\n2. Developed and deployed disaster management or safety-related applications\n3. Created technical solutions that address specific local community problems\n4. Active involvement in tech-driven social initiatives or awareness campaigns"
+    criteria: "1. Active collaboration with NGOs for technical support\n2. Projects addressing environmental sustainability or community service\n3. Fostering positive social relations through tech initiatives\n4. Developed and deployed disaster management or safety-related applications\n5. Active involvement in tech-driven social initiatives or awareness campaigns"
   }
 ];
 
