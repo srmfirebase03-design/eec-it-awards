@@ -39,9 +39,9 @@ export function NominationForm({ awards }: { awards: Award[] }) {
 
   const filteredAwards = awards.filter((award) => {
     if (award.title.includes("Rising talent")) return selectedYear === "I";
+    if (award.title.includes("Social Impact")) return ["I", "II", "III", "IV"].includes(selectedYear);
     if (selectedYear === "I") return false;
     if (award.title.includes("Final year") || award.title.includes("Outgoing Student")) return selectedYear === "IV";
-    if (award.title.includes("Social Impact")) return ["II", "III", "IV"].includes(selectedYear);
     return true;
   });
 
