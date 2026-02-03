@@ -75,7 +75,7 @@ const awards = [
   {
     title: "Best Social Impact through Technology Award",
     description: "For students creating social impact through technology.",
-    criteria: "1. Active collaboration with NGOs for technical support\n2. Projects addressing environmental sustainability or community service\n3. Fostering positive social relations through tech initiatives\n4. Developed and deployed disaster management or safety-related applications\n5. Active involvement in tech-driven social initiatives or awareness campaigns"
+    criteria: "1. Active collaboration with NGOs for technical support to physically challenged and Disabled persons\n2. Projects addressing environmental sustainability and Community Service\n3. Creating Technical Platform to connect NGOs to support Blind, Deaf and dumb, Elderly and Orphans\n4. Fostering positive social relations through tech initiatives\n5. Active involvement through tech-driven social initiatives or awareness campaigns"
   }
 ];
 
@@ -92,7 +92,14 @@ async function main() {
       });
       console.log(`Created award with id: ${createdAward.id}`);
     } else {
-      console.log(`Award "${award.title}" already exists. Skipping.`);
+      await prisma.award.update({
+        where: { id: existing.id },
+        data: {
+            criteria: award.criteria,
+            description: award.description
+        }
+      });
+      console.log(`Updated award: ${award.title}`);
     }
   }
   console.log('Seeding finished.');

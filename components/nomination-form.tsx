@@ -38,10 +38,16 @@ export function NominationForm({ awards }: { awards: Award[] }) {
   const selectedYear = watch("year");
 
   const filteredAwards = awards.filter((award) => {
+    // Check strict year-specific awards first
+    if (/Final year|Outgoing Student/i.test(award.title)) return selectedYear === "IV";
     if (award.title.includes("Rising talent")) return selectedYear === "I";
-    if (award.title.includes("Social Impact")) return ["I", "II", "III", "IV"].includes(selectedYear);
+    
+    // Awards open to all
+    if (award.title.includes("Social Impact")) return true;
+    
+    // General rule: 1st years shouldn't see other general awards
     if (selectedYear === "I") return false;
-    if (award.title.includes("Final year") || award.title.includes("Outgoing Student")) return selectedYear === "IV";
+
     return true;
   });
 
