@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const nominationSchema = z.object({
   name: z.string().min(2, "Name is required"),
-  regNo: z.string().min(5, "Registration Number is required"),
+  regNo: z.string().regex(/^\d{12}$/, "Registration Number must be exactly 12 digits"),
   email: z.string().email("Invalid email address").regex(/@/, "Must be a valid email"), // Add specific domain check if needed
   mobile: z.string().min(10, "Mobile number must be at least 10 digits"),
   year: z.enum(["I", "II", "III", "IV"]),

@@ -71,16 +71,29 @@ const awards = [
     title: "Breaking the Barrier Award",
     description: "For students balancing academics with work responsibilities.",
     criteria: "1. Student who works/has worked part-time to support their education\n2. Successfully balances academics with work responsibilities\n3. Demonstrates perseverance, self-discipline, and determination\n4. Maintains regular attendance and satisfactory academic progress\n5. Exhibits strong character, integrity, and positive attitude"
+  },
+  {
+    title: "Best Social Impact through Technology Award",
+    description: "For students creating social impact through technology.",
+    criteria: "1. Conducted workshops or sessions to educate school students on technology\n2. Developed and deployed disaster management or safety-related applications\n3. Created technical solutions that address specific local community problems\n4. Active involvement in tech-driven social initiatives or awareness campaigns"
   }
 ];
 
 async function main() {
   console.log('Start seeding...');
   for (const award of awards) {
-    const createdAward = await prisma.award.create({
-      data: award,
+    const existing = await prisma.award.findFirst({
+      where: { title: award.title }
     });
-    console.log(`Created award with id: ${createdAward.id}`);
+
+    if (!existing) {
+      const createdAward = await prisma.award.create({
+        data: award,
+      });
+      console.log(`Created award with id: ${createdAward.id}`);
+    } else {
+      console.log(`Award "${award.title}" already exists. Skipping.`);
+    }
   }
   console.log('Seeding finished.');
 }
